@@ -21,9 +21,16 @@ export const taskSlice = createSlice({
     reducers: {
         addTask: (state, action) => {
             state.push(action.payload);
+        },
+        deleteTask: (state, action) => {
+            console.log(action);
+            const index = state.findIndex(task => task.id === action.payload);
+            if(index !== -1) {
+                state = state.splice(index, 1);
+            }
         }
     }
 })
 
-export const  { addTask} = taskSlice.actions;
+export const  { addTask, deleteTask } = taskSlice.actions;
 export default taskSlice.reducer;
