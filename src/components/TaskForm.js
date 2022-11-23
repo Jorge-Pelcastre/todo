@@ -6,13 +6,13 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 
 function TaskForm({ data }) {
     const { id } = useParams();
-    const navigate =  useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.tasks);
     const [task, setTask] = useState(() => {
-        if(id) {
+        if (id) {
             const task = tasks.find(task => task.id === id);
-            if(task) return task;
+            if (task) return task;
         }
         return {
             title: '',
@@ -29,7 +29,7 @@ function TaskForm({ data }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (id !== undefined) {
-            dispatch(updateTask({ ...task, id}));
+            dispatch(updateTask({ ...task, id }));
         } else {
             dispatch(addTask({ ...task, id: uuid() }));
         }
@@ -37,22 +37,22 @@ function TaskForm({ data }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>name</label>
-                <input name="title" onInput={handleInput} defaultValue={task.title} />
+        <form onSubmit={handleSubmit} className="task-form">
+            <div className='input-group'>
+                <label htmlFor="title">Name <span className='input-required'>*</span></label>
+                <input name="title" id="title" onInput={handleInput} defaultValue={task.title} />
             </div>
-            <div>
-                <label>description</label>
-                <textarea name="description" onInput={handleInput} defaultValue={task.description}></textarea>
+            <div className='input-group'>
+                <label htmlFor="description">Description</label>
+                <textarea name="description" id="description" onInput={handleInput} defaultValue={task.description}></textarea>
             </div>
-            <div>
-                <label>complete</label>
-                <input name="complete" type="checkbox" defaultChecked={task.complete} onInput={handleInput} />
+            <div className='input-check-group'>
+                <input id="complete" name="complete" type="checkbox" defaultChecked={task.complete} onInput={handleInput} />
+                <label htmlFor="complete">Complete</label>
             </div>
-            <div>
-                <button type="submit">Save</button>
-                <Link to="/">Cancel</Link>
+            <div className='form-actions'>
+                <button type="submit" className='btn-block btn-accent'>Save</button>
+                <Link to="/" className='btn-block btn-secondary'>Cancel</Link>
             </div>
         </form>
     );

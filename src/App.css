@@ -1,3 +1,11 @@
+.App {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;  
+}
+
 .task {
   display: flex;
   justify-content: space-between;
@@ -15,6 +23,7 @@
   border: 1px solid lightsteelblue;
   border-radius: 5px;
   width: auto;
+  min-width: 200px;
   margin: 10px;
   padding: 0;
 }
@@ -55,4 +64,59 @@
 .cancel-button{
   border: none;
   background-color: inherit;
+}
+
+.task-form {
+  border: 1px solid purple;
+  border-radius: 40px;
+  aspect-ratio: 2;
+  width: 50%;
+  padding: 5%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+span.input-required {
+  color: red;
+}
+
+.input-check-group {
+  margin: 15px 5px;
+}
+
+.form-actions{
+  display: flex;
+  justify-content: stretch;
+}
+
+.form-actions .btn-block{
+  width: 50%;
+  height: 30px;
+  font-size: medium;
+}
+
+.btn-accent {
+  color: white;
+  background-color: blueviolet;
+  border: none;
+}
+
+.btn-secondary {
+  color: black;
+  background-color: whitesmoke;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+a.btn-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
