@@ -1,38 +1,58 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.task {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid lightsteelblue;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 9px;
+  aspect-ratio: 2/1;
+  height: 100px;
+  
+}
+
+.tasks-list {
+  display: inline-block;
+  border: 1px solid lightsteelblue;
+  border-radius: 5px;
+  width: auto;
+  margin: 10px;
+  padding: 0;
+}
+
+.task-check {
+  display: flex;
   align-items: center;
+}
+
+.task-check input[type=checkbox] {
+  margin: 5px;
+}
+
+.task-description {
+  margin: 3px auto;
+  text-align: justify;
+}
+
+.task-content {
+  width: 90%;
+}
+
+.task-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-task{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.add-task-link{
+  display: inline;
+  margin: 10px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cancel-button{
+  border: none;
+  background-color: inherit;
 }
