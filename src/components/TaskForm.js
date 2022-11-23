@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addTask, updateTask } from '../features/tasks/taskSlice';
 import { v4 as uuid } from 'uuid';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
-function TaskForm({ data, close }) {
-    const [task, setTask] = useState({
-        title: data?.title ?? '',
-        description: data?.description ?? '',
-        complete: data?.complete ?? false
-    });
-
+function TaskForm({ data }) {
+    const { id } = useParams();
+    const navigate =  useNavigate();
     const dispatch = useDispatch();
+    const tasks = useSelector(state => state.tasks);
+    const [task, setTask] = useState(() => {
+        if(id) {
+            const task = tasks.find(task => task.id === id);
+            if(task) return task;
+        }
+        return {
+            title: '',
+            description: '',
+            complete: false
+        }
+    });
 
     const handleInput = ({ target }) => {
         const { name, value } = target;
@@ -19,16 +28,12 @@ function TaskForm({ data, close }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (data.id !== undefined) {
-            dispatch(updateTask({ ...task, id: data.id }));
+        if (id !== undefined) {
+            dispatch(updateTask({ ...task, id}));
         } else {
             dispatch(addTask({ ...task, id: uuid() }));
         }
-        close();
-    }
-
-    const handleClose = () => {
-        close();
+        navigate('/');
     }
 
     return (
@@ -47,7 +52,7 @@ function TaskForm({ data, close }) {
             </div>
             <div>
                 <button type="submit">Save</button>
-                <button type="button" onClick={handleClose}>Cancel</button>
+                <Link to="/">Cancel</Link>
             </div>
         </form>
     );
