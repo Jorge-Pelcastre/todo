@@ -1,15 +1,15 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteTask } from "../features/tasks/taskSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { faSquare } from '@fortawesome/free-regular-svg-icons';
+import { deleteTask } from "../features/tasks/taskSlice";
 
 function Task({ id, title, description, complete }) {
     const dispatch = useDispatch();
 
-    const handleDelete = (id) => {
-        dispatch(deleteTask(id));
+    const handleDelete = (idTask) => {
+        dispatch(deleteTask(idTask));
     }
 
     return (
@@ -23,7 +23,7 @@ function Task({ id, title, description, complete }) {
                         {title}   
                     </strong>
                     <span>
-                        <button onClick={e => handleDelete(id)} className="cancel-button">
+                        <button type="button" onClick={() => handleDelete(id)} className="cancel-button">
                             <FontAwesomeIcon icon={faTrash}/>
                         </button>
                         <Link to={`/${id}/edit`}>
@@ -34,9 +34,6 @@ function Task({ id, title, description, complete }) {
                 <p className="task-description">
                     {description}
                 </p>
-                <div>
-                    
-                </div>
             </div>
         </li>
     );

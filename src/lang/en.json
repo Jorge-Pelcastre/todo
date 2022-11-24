@@ -1,0 +1,30 @@
+{
+    "errors": {
+        "required": ":attribute is required",
+        "accepted": ":attribute must be accepted",
+        "number": ":attribute  must be a number",
+        "string": ":attribute  must be a string",
+        "boolean": ":attribute  must be a boolean",
+        "date": ":attribute must be a Date",
+        "array": ":attribute must be a Array",
+        "file": ":attribute must be a File",
+        "min": ":attribute must not be minum than :value",
+        "max": ":attribute must not be maximum than :value",
+        "gt": ":attribute must be greater than :value",
+        "lt": ":attribute must be less than :value",
+        "gte": ":attribute must be greater than or equal :value",
+        "lte": ":attribute must be less than or equal :value",
+        "size": "size of :attribute must be equal :value",
+        "between": ":attribute must be between :value and :value",
+        "regexp": ":attribute must be match with :value",
+        "confirm": ":attribute must be equal to :attribute confirmed",
+        "unique": ":attribute must be unique",
+        "before": ":attribute must be before :value",
+        "after": ":attribute must be after :value",
+        "exists": ":attribute must exist in :value in column :value",
+        "mime": ":attribute must be of any of this :value",
+        "dimentions": "dimension :attribute must be :value X :value",
+        "includes": ":attribute must be in options",
+        "notIncludes": ":attribute must not be in options"
+    }
+}
