@@ -12,7 +12,7 @@ const initialState = [
         title: 'task 2',
         description: 'taks 2 description',
         complete: false
-    }
+    } 
 ]
 
 export const taskSlice = createSlice({
@@ -33,9 +33,16 @@ export const taskSlice = createSlice({
             if(index !== -1) {
                 state.splice(index, 1, action.payload);
             }
+        },
+        swapTasks: (state, action) => {
+            const [i1, i2] = action.payload;
+            const task1 = state[i1];
+            const task2 = state[i2];
+            state.splice(i1, 1, task2);
+            state.splice(i2, 1, task1);
         }
     }
 })
 
-export const  { addTask, deleteTask, updateTask} = taskSlice.actions;
+export const  { addTask, deleteTask, updateTask, swapTasks } = taskSlice.actions;
 export default taskSlice.reducer;

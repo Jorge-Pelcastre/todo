@@ -120,3 +120,8 @@ a.btn-block {
   align-items: center;
   justify-content: center;
 }
+
+.tasks-container{
+  margin: 0;
+  padding: 0;
+}
