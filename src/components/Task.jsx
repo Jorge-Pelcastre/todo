@@ -6,15 +6,13 @@ import withReactContent from "sweetalert2-react-content";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
-  faTrash,
-  faSquareCheck
+  faTrash
 } from "@fortawesome/free-solid-svg-icons";
-import { faSquare } from "@fortawesome/free-regular-svg-icons";
 import { deleteTask } from "../features/tasks/taskSlice";
 
 const reactSwal = withReactContent(Swal);
 
-function Task({ id, title, description, complete, draggableProvided }) {
+function Task({ id, title, description, draggableProvided }) {
   const dispatch = useDispatch();
   const handleDelete = (idTask) => {
     reactSwal
@@ -36,34 +34,29 @@ function Task({ id, title, description, complete, draggableProvided }) {
   };
 
   return (
-    <li
+    <div
       {...draggableProvided.draggableProps}
       ref={draggableProvided.innerRef}
       {...draggableProvided.dragHandleProps}
       className="task"
     >
-      <div className="task-check">
-        <FontAwesomeIcon icon={complete ? faSquareCheck : faSquare} />
+      <div className="task-title">
+        <strong>{title}</strong>
+        <span>
+          <button
+            type="button"
+            onClick={() => handleDelete(id)}
+            className="cancel-button"
+          >
+            <FontAwesomeIcon icon={faTrash} style={{ color: "purple" }} />
+          </button>
+          <Link to={`/${id}/edit`}>
+            <FontAwesomeIcon icon={faEdit} />
+          </Link>
+        </span>
       </div>
-      <div className="task-content">
-        <div className="task-title">
-          <strong>{title}</strong>
-          <span>
-            <button
-              type="button"
-              onClick={() => handleDelete(id)}
-              className="cancel-button"
-            >
-              <FontAwesomeIcon icon={faTrash} style={{ color: "purple" }} />
-            </button>
-            <Link to={`/${id}/edit`}>
-              <FontAwesomeIcon icon={faEdit} />
-            </Link>
-          </span>
-        </div>
-        <p className="task-description">{description}</p>
-      </div>
-    </li>
+      <p className="task-description">{description}</p>
+    </div>
   );
 }
 

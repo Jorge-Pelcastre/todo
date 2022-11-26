@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { swapTasks } from "../features/tasks/taskSlice";
 import Task from "./Task";
 
-function TasksList() {
-  const tasks = useSelector((state) => state.tasks);
+function TasksList({ type, icon }) {
+  const tasks = useSelector((state) =>
+    state.tasks.filter((t) => t.status === type)
+  );
   const dispatch = useDispatch();
   const handleDragEnd = ({ source, destination }) => {
     if (source && destination) {
@@ -19,9 +19,12 @@ function TasksList() {
   return (
     <div className="tasks-list">
       <DragDropContext onDragEnd={handleDragEnd}>
-      <Droppable droppableId="tasks-container">
+        <div className="tasks-list-icon">
+          <FontAwesomeIcon icon={icon} size="2xl"/>
+        </div>
+        <Droppable droppableId="tasks-container">
           {(droppableProvided) => (
-            <ul
+            <div
               {...droppableProvided.droppableProps}
               ref={droppableProvided.innerRef}
               className="tasks-container"
@@ -32,21 +35,17 @@ function TasksList() {
                     <Task
                       id={task.id}
                       title={task.title}
-                      complete={task.complete}
+                      status={task.status}
                       description={task.description}
-                      draggableProvided={draggableProvided}/>
+                      draggableProvided={draggableProvided}
+                    />
                   )}
                 </Draggable>
               ))}
               {droppableProvided.placeholder}
-            </ul>
+            </div>
           )}
         </Droppable>
-        <div className="add-task">
-          <Link to="/create" className="add-task-link">
-            <FontAwesomeIcon icon={faCirclePlus} size="2xl" />
-          </Link>
-        </div>
       </DragDropContext>
     </div>
   );

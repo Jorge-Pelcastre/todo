@@ -5,13 +5,19 @@ const initialState = [
         id: '1',
         title: 'task 1',
         description: 'taks 1 description',
-        complete: false
+        status: 'pending'
     },
     {
         id: '2',
         title: 'task 2',
         description: 'taks 2 description',
-        complete: false
+        status: "inProgress"
+    },
+    {
+        id: '3',
+        title: 'task 3',
+        description: 'taks 3 description',
+        status: "complete"
     } 
 ]
 
