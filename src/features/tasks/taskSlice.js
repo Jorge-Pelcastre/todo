@@ -18,7 +18,19 @@ const initialState = [
         title: 'task 3',
         description: 'taks 3 description',
         status: "complete"
-    } 
+    },
+    {
+        id: '4',
+        title: 'task 4',
+        description: 'taks 4 description',
+        status: "complete"
+    },
+    {
+        id: '5',
+        title: 'task 5',
+        description: 'taks 5 description',
+        status: "complete"
+    }  
 ]
 
 export const taskSlice = createSlice({
@@ -41,11 +53,12 @@ export const taskSlice = createSlice({
             }
         },
         swapTasks: (state, action) => {
-            const [i1, i2] = action.payload;
-            const task1 = state[i1];
-            const task2 = state[i2];
-            state.splice(i1, 1, task2);
-            state.splice(i2, 1, task1);
+            const [i1, i2, type] = action.payload;
+            const types = state.filter(t => t.status === type);
+            const task1 = types[i1];
+            const task2 = types[i2];
+            state.splice(state.findIndex(t => t.id === task1.id), 1, task2);
+            state.splice(state.findIndex(t => t.id === task2.id), 1, task1);
         }
     }
 })

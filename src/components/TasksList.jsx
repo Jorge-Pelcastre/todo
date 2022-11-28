@@ -12,7 +12,7 @@ function TasksList({ type, icon }) {
   const dispatch = useDispatch();
   const handleDragEnd = ({ source, destination }) => {
     if (source && destination) {
-      dispatch(swapTasks([source.index, destination.index]));
+      dispatch(swapTasks([source.index, destination.index, source.droppableId]));
     }
   };
 
@@ -22,7 +22,7 @@ function TasksList({ type, icon }) {
         <div className="tasks-list-icon">
           <FontAwesomeIcon icon={icon} size="2xl"/>
         </div>
-        <Droppable droppableId="tasks-container">
+        <Droppable droppableId={type}>
           {(droppableProvided) => (
             <div
               {...droppableProvided.droppableProps}
