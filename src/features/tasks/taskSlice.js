@@ -54,14 +54,19 @@ export const taskSlice = createSlice({
         },
         swapTasks: (state, action) => {
             const [i1, i2, type] = action.payload;
-            const types = state.filter(t => t.status === type);
-            const task1 = types[i1];
-            const task2 = types[i2];
+            const status = state.filter(t => t.status === type);
+            const task1 = status[i1];
+            const task2 = status[i2];
             state.splice(state.findIndex(t => t.id === task1.id), 1, task2);
             state.splice(state.findIndex(t => t.id === task2.id), 1, task1);
+        },
+        changeStatus: (state, action) => {
+            const [index, oldStatus, newStatus] = action.payload;
+            const status = state.filter(t => t.status === oldStatus);
+            status[index].status = newStatus;
         }
     }
 })
 
-export const  { addTask, deleteTask, updateTask, swapTasks } = taskSlice.actions;
+export const  { addTask, deleteTask, updateTask, swapTasks, changeStatus } = taskSlice.actions;
 export default taskSlice.reducer;
