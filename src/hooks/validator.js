@@ -84,8 +84,6 @@ const includes = (value, ...options) => options.slice(0, -2).includes(value);
 
 const notIncludes = (...params) => !includes(...params);
 
-const unique = (...params) => notIncludes(...params);
-
 const confirm = (value, _, attribute, data) =>
   value === data[`${attribute}_confirm`];
 
@@ -144,11 +142,12 @@ const functionRules = {
   before,
   image,
   mime,
+  only: includes,
   dimensions,
   includes,
   notIncludes,
   exists,
-  unique,
+  unique: notIncludes,
 };
 
 
@@ -162,6 +161,9 @@ export default class Validator {
         let [rule, values = ""] = element.split(":");
         values = values.split(",");
         const validate = functionRules[rule];
+        if(!(validate instanceof Function)) {
+          throw Error(`${rule} is not supported`)
+        }
         const validation = validate(
           data[attribute],
           ...values,

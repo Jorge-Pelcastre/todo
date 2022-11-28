@@ -25,6 +25,7 @@
         "mime": ":attribute must be of any of this :value",
         "dimentions": "dimension :attribute must be :value X :value",
         "includes": ":attribute must be in options",
+        "only": ":attribute is not valid",
         "notIncludes": ":attribute must not be in options"
     }
 }

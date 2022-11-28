@@ -85,8 +85,35 @@ function Textarea({
   );
 }
 
+function Select({
+  required = false,
+  value,
+  options,
+  handleInput,
+  name,
+  label,
+  errors
+}) {
+  return (
+    <div className="input-group">
+      <label htmlFor={name}>
+        {label ?? capitalize(name)}{" "}
+        {required && <span className="input-required">*</span>}
+      </label>
+      <select name={name} onChange={handleInput} defaultValue={value}>
+          {options.map(([key, text]) => (
+            <option key={key} value={key}>{text}</option>
+          ))}
+      </select>
+      {errors.has(name) && <Error message={errors.get(name)} />}
+    </div>
+  );
+}
+
 function Error({ message }) {
   return <span style={{ color: "red" }}>{message}</span>;
 }
 
-export { Input, Textarea, Checkbox, Error };
+export default Select;
+
+export { Input, Textarea, Checkbox, Select, Error };

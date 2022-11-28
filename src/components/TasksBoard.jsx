@@ -7,7 +7,7 @@ import TasksList from "./TasksList";
 function TasksBoard() {
   return (
     <div className="tasks-board">
-      <div className="tasks-container">
+      <div className="tasks-list-container">
         <TasksList type="pending" icon={faSquare}/>
         <TasksList type="inProgress" icon={faSpinner}/>
         <TasksList type="complete" icon={faCheck}/>
